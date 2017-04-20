@@ -331,9 +331,11 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     if (editText2.length() != 0) {
                         editText2.setText("(" + editText2.getText().toString() + ")^2");
-                        value = helperMethods.countSquare(value);
+                        if (editText1.length() != 0)    {
+                            result = result + helperMethods.countSquare(value);
+                        }else result = helperMethods.countSquare(value);
                     }
-                    operationClicked(op);
+                    operationClicked("");
                     break;
 
                 case R.id.log:
