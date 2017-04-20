@@ -61,6 +61,14 @@ public class HelperMethods {
         return false;
     }
 
+    public boolean isLastCharOperator (EditText editText)  {
+
+        String last = getLastChar(editText);
+
+        if (last.equals("+") || last.equals("-") || last.equals("/") || last.equals("*")) return true;
+        return false;
+    }
+
     public String getLastChar (EditText editText)   {
 
         String last = editText.getText().toString();
@@ -75,7 +83,6 @@ public class HelperMethods {
         return first.substring(0, 1);
     }
 
-//    Specjalnie dla Ani
     public boolean isNegative (EditText editText)   {
 
         if(getFirstChar(editText).equals("-")) return true;
@@ -91,5 +98,15 @@ public class HelperMethods {
         }
 
         return value;
+    }
+
+    public String removeLastChar(EditText editText) {
+
+        String last = editText.getText().toString();
+        
+        if (last != null && last.length() > 0) {
+            last = last.substring(0, last.length()-1);
+        }
+        return last;
     }
 }

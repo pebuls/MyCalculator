@@ -238,7 +238,9 @@ class AdvancedCal  extends AppCompatActivity    {
                             if (!op.equals("")) {
                                 result = helperMethods.operate(result, value, op);
                             } else result = value;
-                        }else result = value;
+                        }else if (editText2.length() == 0 && op.equals("")) {
+                            result = value;
+                        }
 
                         try {
                             editText1.setText(result + "");
@@ -314,9 +316,11 @@ class AdvancedCal  extends AppCompatActivity    {
                     if(!helperMethods.isNegative(editText2))    {
                         if (editText2.length() != 0) {
                             editText2.setText("sqrt(" + editText2.getText().toString() + ")");
-                            value = helperMethods.countSqrt(value);
+                            if (editText1.length() != 0)    {
+                                result = result + helperMethods.countSqrt(value);
+                            }else result = helperMethods.countSqrt(value);
                         }
-                        operationClicked(op);
+                        operationClicked("");
                     } else Toast.makeText(getBaseContext(), "You have negative number" , Toast.LENGTH_SHORT ).show();
 
                     break;
@@ -383,6 +387,9 @@ class AdvancedCal  extends AppCompatActivity    {
         {
             if(editText1.length() > 0)
             {
+                if(helperMethods.isLastCharOperator(editText1))    {
+                   editText1.setText(helperMethods.removeLastChar(editText1));
+                }
                 editText1.setText(editText1.getText() + op);
             }
         }
