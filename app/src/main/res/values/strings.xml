@@ -19,7 +19,7 @@
 
     <string name="coma">.</string>
     <string name="posneg">±</string>
-    <string name="backspace">⌫</string>
+    <string name="backspace">←</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="equal">=</string>

@@ -180,7 +180,7 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
-                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                    if(editText1.length() != 0 && editText2.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
                         Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
                         editText2.setText("");
                         break;
@@ -199,7 +199,7 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
-                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                    if(editText1.length() != 0 && editText2.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
                         Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
                         editText2.setText("");
                         break;
@@ -218,7 +218,7 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
-                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                    if(editText1.length() != 0 && editText2.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
                         Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
                         editText2.setText("");
                         break;
@@ -237,7 +237,7 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
-                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                    if(editText1.length() != 0 && editText2.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
                         Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
                         editText2.setText("");
                         break;
@@ -260,9 +260,13 @@ class AdvancedCal  extends AppCompatActivity    {
 
                             value = helperMethods.ifIsNegativeReturnNegative(editText2, value);
 
-                            if (!op.equals("")) {
-                                result = helperMethods.operate(result, value, op);
-                            } else result = value;
+                            if(!usedSquare) {
+                                if(!helperMethods.isLastCharBracket(editText1)) {
+                                    if (!op.equals("")) {
+                                        result = helperMethods.operate(result, value, op);
+                                    } else result = value;
+                                }
+                            }
                         }
 
                         try {
@@ -336,7 +340,7 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
-                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                    if(editText1.length() != 0 && op.equals("") && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
                         Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
                         editText2.setText("");
                         break;
@@ -380,7 +384,7 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
-                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                    if(editText1.length() != 0 && op.equals("") && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
                         Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
                         editText2.setText("");
                         break;
@@ -388,7 +392,7 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     if(!helperMethods.isNegative(editText2))    {
                         if (editText2.length() != 0) {
-                            editText2.setText("log(" + editText2.getText().toString() + ")");
+                            editText2.setText("ln(" + editText2.getText().toString() + ")");
                             if (editText1.length() != 0)    {
                                 result = result + helperMethods.countLog(value);
                             }else result = helperMethods.countLog(value);
@@ -402,7 +406,7 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
-                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                    if(editText1.length() != 0 && op.equals("") && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
                         Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
                         editText2.setText("");
                         break;
