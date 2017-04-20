@@ -2,6 +2,7 @@ package com.mobile.pebuls.mycalculator;
 
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by pebuls on 29.03.17.
@@ -58,6 +59,22 @@ public class HelperMethods {
         String last = getLastChar(editText);
 
         if (last.equals(".")) return true;
+        return false;
+    }
+
+    public boolean isLastCharBracket (EditText editText)  {
+
+        String last = getLastChar(editText);
+
+        if (last.equals(")")) return true;
+        return false;
+    }
+
+    public boolean isUseSquer(EditText editText)  {
+
+        String last = getLastChar(editText);
+
+        if (last.equals(")")) return true;
         return false;
     }
 

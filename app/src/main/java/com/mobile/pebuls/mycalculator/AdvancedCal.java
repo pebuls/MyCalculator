@@ -21,6 +21,7 @@ class AdvancedCal  extends AppCompatActivity    {
     private double value = 0;
     private double result = 0;
     private boolean usedEqual = false;
+    private boolean usedSquare = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,18 +180,30 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
+                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                        Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
+                        editText2.setText("");
+                        break;
+                    }
+
                     if (editText2.length() != 0) {
                         if (!op.equals("")) {
                             result = helperMethods.operate(result, value, op);
                         } else result = value;
                     }
-
+                    usedSquare = false;
                     op = operationClicked("+");
                     break;
 
                 case R.id.minus:
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
+
+                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                        Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
+                        editText2.setText("");
+                        break;
+                    }
 
                     if (editText2.length() != 0) {
                         if (!op.equals("")) {
@@ -205,6 +218,12 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
+                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                        Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
+                        editText2.setText("");
+                        break;
+                    }
+
                     if (editText2.length() != 0) {
                         if (!op.equals("")) {
                             result = helperMethods.operate(result, value, op);
@@ -217,6 +236,12 @@ class AdvancedCal  extends AppCompatActivity    {
                 case R.id.multiply:
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
+
+                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                        Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
+                        editText2.setText("");
+                        break;
+                    }
 
                     if (editText2.length() != 0) {
                         if (!op.equals("")) {
@@ -313,6 +338,12 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
+                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                        Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
+                        editText2.setText("");
+                        break;
+                    }
+
                     if(!helperMethods.isNegative(editText2))    {
                         if (editText2.length() != 0) {
                             editText2.setText("sqrt(" + editText2.getText().toString() + ")");
@@ -329,27 +360,43 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
+                    if(editText1.length() != 0 && usedSquare) {
+                        Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
+                        editText2.setText("");
+                        break;
+                    }
+
                     if (editText2.length() != 0) {
                         editText2.setText("(" + editText2.getText().toString() + ")^2");
                         if (editText1.length() != 0)    {
                             result = result + helperMethods.countSquare(value);
                         }else result = helperMethods.countSquare(value);
+                        usedSquare = true;
                     }
+
                     operationClicked("");
+
                     break;
 
                 case R.id.log:
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
+                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                        Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
+                        editText2.setText("");
+                        break;
+                    }
+
                     if(!helperMethods.isNegative(editText2))    {
                         if (editText2.length() != 0) {
                             editText2.setText("log(" + editText2.getText().toString() + ")");
-                            value = helperMethods.countLog(value);
+                            if (editText1.length() != 0)    {
+                                result = result + helperMethods.countLog(value);
+                            }else result = helperMethods.countLog(value);
                         }
-                        operationClicked(op);
+                        operationClicked("");
                     } else Toast.makeText(getBaseContext(), "You have negative number" , Toast.LENGTH_SHORT ).show();
-
 
                     break;
 
@@ -357,26 +404,36 @@ class AdvancedCal  extends AppCompatActivity    {
 
                     usedEqual = helperMethods.isEqualUsed(usedEqual, editText1);
 
+                    if(editText1.length() != 0 && (helperMethods.isLastCharBracket(editText1) || usedSquare)) {
+                        Toast.makeText(getBaseContext(), "First choose operator", Toast.LENGTH_SHORT).show();
+                        editText2.setText("");
+                        break;
+                    }
+
                     if(!helperMethods.isNegative(editText2))    {
                         if (editText2.length() != 0) {
-                            editText2.setText("(" + editText2.getText().toString() + ")!");
-                            value = helperMethods.countFactorial(value);
+                            if(editText2.length() > 3)  {
+                                Toast.makeText(getBaseContext(), "I'm to lazy to calculate this" , Toast.LENGTH_SHORT ).show();
+                                editText2.setText("");
+                            } else {
+                                editText2.setText("(" + editText2.getText().toString() + ")!");
+                                if (editText1.length() != 0) {
+                                    result = result + helperMethods.countFactorial(value);
+                                } else result = helperMethods.countFactorial(value);
+                            }
                         }
-                        operationClicked(op);
+                        operationClicked("");
                     } else Toast.makeText(getBaseContext(), "You have negative number" , Toast.LENGTH_SHORT ).show();
 
                     break;
             }
-            //Thread.sleep(1000);
         }catch (Exception e)  {
             e.printStackTrace();
         }
     }
 
-    private String operationClicked(String op)
-    {
-        if(editText2.length() != 0)
-        {
+    private String operationClicked(String op)  {
+        if(editText2.length() != 0) {
             result = helperMethods.ifIsNegativeReturnNegative(editText2, result);
 
             if(!helperMethods.isLastCharComa(editText2))  {
@@ -385,10 +442,8 @@ class AdvancedCal  extends AppCompatActivity    {
                 editText2.setText("");
             }
         }
-        else
-        {
-            if(editText1.length() > 0)
-            {
+        else    {
+            if(editText1.length() > 0)  {
                 if(helperMethods.isLastCharOperator(editText1))    {
                    editText1.setText(helperMethods.removeLastChar(editText1));
                 }
