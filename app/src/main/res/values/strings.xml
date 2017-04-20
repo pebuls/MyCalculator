@@ -29,6 +29,6 @@
 
     <string name="sqrt">√</string>
     <string name="square">x²</string>
-    <string name="log">log</string>
+    <string name="ln">ln</string>
     <string name="factorial" >x!</string>
 </resources>
