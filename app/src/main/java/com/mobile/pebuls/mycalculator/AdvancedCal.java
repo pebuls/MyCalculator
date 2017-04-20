@@ -263,8 +263,6 @@ class AdvancedCal  extends AppCompatActivity    {
                             if (!op.equals("")) {
                                 result = helperMethods.operate(result, value, op);
                             } else result = value;
-                        }else if (editText2.length() == 0 && op.equals("")) {
-                            result = value;
                         }
 
                         try {
